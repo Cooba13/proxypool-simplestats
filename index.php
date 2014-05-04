@@ -2,11 +2,14 @@
 <html lang="en">
 <head>
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Simple ProxyPool stats</title>
 </head>
 
 <body>
-
+<div class="container">
 <h2>Simple stats for proxypool</h2>
 <p>This is just fetch from database, dont take numbers seriously, it is really rough estimate ;)
 <p>More info on <a href="http://whatever.kn.vutbr.cz:9172/static/">http://whatever.kn.vutbr.cz:9172/static/</a> where you can find out how to mine and see Vertcoin stats for p2pool node. Monocle is mined separetly and there are no stats for that.
@@ -27,6 +30,6 @@
 
   echo $htmlbody;
 ?>
-
+</div>
 </body>
 </html>
