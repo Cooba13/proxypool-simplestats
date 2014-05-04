@@ -1,11 +1,12 @@
-<?
+<?php
   
-  require getcwd() . "/../include/config.php";
+  require_once dirname(__FILE__) . "/../include/config.php";
+  
   $db = mysql_connect($db_host, $db_user, $db_password);
   if (!$db) die('Error connecting to db');
 
   mysql_select_db($db_db);
-  $result = mysql_query("select distinct(user), auxuser, sum(monvalue), sum(vtcvalue) from stats_shares where foundtime >= date_sub(now(), interval 5 minute) group by user;");
+  $result = mysql_query("select distinct(user), auxuser, sum(monvalue), sum(vtcvalue) from stats_shares where foundtime >= date_sub(now(), interval 5 minute) group by user");
   $rows = mysql_num_rows($result);
 
   $sum_mon = 0;
@@ -19,7 +20,7 @@
   if ($rows == 0) {
     $output .= "Nothing to display";
   } else {
-    $output .= "<h3>Last 5 minutes stats</h3><table><th>VTC</th><th>MON</th><th>MON value</th><th>VTC value</th><th>Hashrate (khs)</th>";
+    $output .= "<h3>Last 5 minutes stats</h3><table class='table table-bordered table-striped'><th>VTC</th><th>MON</th><th>MON value</th><th>VTC value</th><th>Hashrate (khs)</th>";
     $output .=  "<p>This table is updated every one minute. Last update " . $now;
     while ( $row = mysql_fetch_array($result) ): {
       $sum_mon += $row[2];
