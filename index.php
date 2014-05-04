@@ -7,7 +7,7 @@ table, tr, th, td { border: 1px solid black; }
 th { font-weight: bold; }
 span { background-color: #222222; color: #cccccc; }
 </style>
-
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
 <title>Simple ProxyPool stats</title>
 </head>
 
