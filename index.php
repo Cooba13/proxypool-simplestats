@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+<link href="./theme/basic.css" rel="stylesheet">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -21,11 +22,11 @@
 
   if ( isset($_GET['vtc']) ) {  
     $safeVtc = htmlspecialchars($_GET['vtc'],ENT_QUOTES);
-    $htmlbody = str_replace(">" . $safeVtc . "><span>". $safeVtc . "</span>", $htmlbody);
+    $htmlbody = str_replace(">" . $safeVtc, " class=\"highlight_address\">". $safeVtc, $htmlbody);
   };
   if ( $_GET['mon'] ) {
     $safeMon = htmlspecialchars($_GET['mon'],ENT_QUOTES);
-    $htmlbody = str_replace(">" . $safeMon, "><span>". $safeMon . "</span>", $htmlbody);
+    $htmlbody = str_replace(">" . $safeMon, " class=\"highlight_address\">". $safeMon, $htmlbody);
   };
 
   echo $htmlbody;
