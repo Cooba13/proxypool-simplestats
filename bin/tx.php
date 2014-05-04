@@ -27,7 +27,7 @@
 
   $output .= "<h3>List of MON transactions</h3>";
   $output .= "<p>This table is updated every 5 minutes. Last update " . $now;
-  $output .= "<table><tr><th>Date</th><th>TX Hash</th><th>user</th><th>Amount</th></tr>";
+  $output .= "<table class='table table-bordered table-striped'><tr><th>Date</th><th>TX Hash</th><th>user</th><th>Amount</th></tr>";
 
   $query = "select stats_transactions.date_sent, stats_transactions.txhash, stats_usertransactions.user, stats_usertransactions.amount from stats_transactions inner join stats_usertransactions on stats_transactions.id = stats_usertransactions.tx_id and stats_usertransactions.coin = 'mon' order by stats_transactions.date_sent desc;";
   $result = mysql_query($query);
