@@ -1,10 +1,14 @@
 proxypool-simplestats
 =====================
 
+Taken from https://github.com/Cooba13/proxypool-simplestats and modified slightly to include bootstrap CSS from the bootstrap CDN.
+
+Not tested
+
 This is quick and dirty mashup of php code to get some info from p2proxy (VTC/MON version) database and show it to users.
 
 
-INSTALATION
+INSTALLATION
 ===========
 
 First you need to download this repositoty to location, where apache or some other web server can reach it. Then copy ./include/config.example.php to ./include/config.php and set all needed values.
