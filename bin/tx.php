@@ -21,7 +21,7 @@
   $result = mysql_query($query);
   while ( $row = mysql_fetch_array($result) ): {
     $output .= "<tr><td>" . $row[0] ."</td><td><a href=\"http://cryptexplorer.com/tx/" . $row[1] . "\">" . $row[1] . "</a></td>";
-    $output .= "<td><a href=\"http://cryptexplorer.com/address/" . $row[2] . "\">". $row[2] . "</td><td>". $row[3] . "</td></tr>";
+    $output .= "<td><a href=\"http://cryptexplorer.com/address/" . $row[2] . "\">". $row[2] . "</a></td><td>". $row[3] . "</td></tr>";
   } endwhile;
   $output .= "</table>";
 
@@ -32,8 +32,8 @@
   $query = "select stats_transactions.date_sent, stats_transactions.txhash, stats_usertransactions.user, stats_usertransactions.amount from stats_transactions inner join stats_usertransactions on stats_transactions.id = stats_usertransactions.tx_id and stats_usertransactions.coin = 'mon' order by stats_transactions.date_sent desc;";
   $result = mysql_query($query);
   while ( $row = mysql_fetch_array($result) ): {
-    $output .= "<tr><td>" . $row[0] ."</td><td><a href=\"http://cryptexplorer.com/tx/" . $row[1] . "\">" . $row[1] . "</a></td>";
-    $output .= "<td><a href=\"http://cryptexplorer.com/address/" . $row[2] . "\">". $row[2] . "</td><td>". $row[3] . "</td></tr>";
+    $output .= "<tr><td>" . $row[0] ."</td><a href=\"http://cryptexplorer.com/tx/" . $row[1] . "\"><td>" . $row[1] . "</td></a>";
+    $output .= "<td><a href=\"http://cryptexplorer.com/address/" . $row[2] . "\">". $row[2] . "</a></td><td>". $row[3] . "</td></tr>";
   } endwhile;
   $output .= "</table>";
 

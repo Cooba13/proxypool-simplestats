@@ -22,11 +22,29 @@
 
   if ( isset($_GET['vtc']) ) {  
     $safeVtc = htmlspecialchars($_GET['vtc'],ENT_QUOTES);
-    $htmlbody = str_replace(">" . $safeVtc, " class=\"highlight_address\">". $safeVtc, $htmlbody);
+
+    $pattern = array();
+    $pattern[0] = '/><a href="http:\/\/cryptexplorer.com\/address\/' . $safeVtc . '"/';
+    $pattern[1] = '/d>' . $safeVtc . '/';
+    $replacement = array();
+    $replacement[0] = ' class="highlight_address"><a href="http://cryptexplorer.com/address/' . $safeVtc . '"/';;
+    $replacement[1] = 'd class="highlight_address">' . $safeVtc;
+
+    $htmlbody = preg_replace($pattern, $replacement, $htmlbody);
   };
-  if ( $_GET['mon'] ) {
+
+  if ( isset($_GET['mon']) ) {
     $safeMon = htmlspecialchars($_GET['mon'],ENT_QUOTES);
-    $htmlbody = str_replace(">" . $safeMon, " class=\"highlight_address\">". $safeMon, $htmlbody);
+
+    $pattern = array();
+    $pattern[0] = '/><a href="http:\/\/cryptexplorer.com\/address\/' . $safeMon . '"/';
+    $pattern[1] = '/d>' . $safeMon . '/';
+    $replacement = array();
+    $replacement[0] = ' class="highlight_address"><a href="http://cryptexplorer.com/address/' . $safeMon . '"/';;
+    $replacement[1] = 'd class="highlight_address">' . $safeMon;
+
+    $htmlbody = preg_replace($pattern, $replacement, $htmlbody);
+
   };
 
   echo $htmlbody;
