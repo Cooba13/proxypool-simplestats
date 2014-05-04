@@ -11,8 +11,11 @@ First you need to download this repositoty to location, where apache or some oth
 Set scheduler to run ./bin/tx.php ./bin/active.php and ./bin/unpaid.php
 Something like
 
-\* * * * * cd /var/www/proxypool/bin; /usr/bin/php /var/www/proxypool/bin/active.php
-\*/5 * * * * cd /var/www/proxypool/bin; /usr/bin/php /var/www/proxypool/bin/unpaid.php; /usr/bin/php /var/www/proxypool/bin/tx.php
+```
+* * * * * cd /var/www/proxypool/bin; /usr/bin/php /var/www/proxypool/bin/active.php
+
+*/5 * * * * cd /var/www/proxypool/bin; /usr/bin/php /var/www/proxypool/bin/unpaid.php; /usr/bin/php /var/www/proxypool/bin/tx.php
+```
 
 in crontab works.
 
