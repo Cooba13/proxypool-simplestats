@@ -1,6 +1,7 @@
-<?
+<?php
 
-  require getcwd() . "/../include/config.php";
+  require_once dirname(__FILE__) . "/../include/config.php";
+  
   $db = mysql_connect($db_host, $db_user, $db_password);
   if (!$db) die('Error connecting to db');
 
@@ -18,7 +19,7 @@
   if ($rows = 0) {
      $output = "Nothing to display";
   } else {
-    $output .= "<h3>All times, good times</h3><p>This is table of not yet paid submitted shares<table><th>VTC</th><th>MON</th><th>MON value</th><th>VTC value</th>";
+    $output .= "<h3>All times, good times</h3><p>This is table of not yet paid submitted shares<table class='table table-bordered table-striped'><th>VTC</th><th>MON</th><th>MON value</th><th>VTC value</th>";
     $output .= "<p>This table is updated every 5 minutes. Last update " . $now;
     while ( $row = mysql_fetch_array($result) ): {
       $sum_mon += $row[2];
