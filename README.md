@@ -39,6 +39,7 @@ VTC: Vt39dQgGN6oJpycARRHRtGVrz1nngjaV7b
 
 MON: MDbTCpvBsMuSBfGRHi4NT8cD5EH1uE9qCa
 
+Link to this repo and those two addresses was added to footer of the page. If you want to remove it, feel free to do so.
 
 DISCLAMER
 =========
