@@ -1,13 +1,15 @@
 <?php
 
   require_once dirname(__FILE__) . "/../include/config.php";
+
+  date_default_timezone_set($local_timezone);
   
   $db = mysql_connect($db_host, $db_user, $db_password);
   if (!$db) die('Error connecting to db');
 
   mysql_select_db($db_db);
 
-  $now = gmdate("c");
+  $now = date("Y-m-d\TH:i:s");
 
   $sum_mon = 0;
   $sum_vtc = 0;

@@ -9,17 +9,23 @@
 <title>Simple ProxyPool stats</title>
 </head>
 
+<?php
+  require_once dirname(__FILE__) . "/include/config.php";
+?>
+
 <body>
 <div class="container">
 <h2>Simple stats for proxypool</h2>
 <p>This is just fetch from database, dont take numbers seriously, it is really rough estimate ;)
-<p>More info on <a href="http://whatever.kn.vutbr.cz:9172/static/">http://whatever.kn.vutbr.cz:9172/static/</a> where you can find out how to mine and see Vertcoin stats for p2pool node. Monocle is mined separetly and there are no stats for that.
-<p>All times are in UTC.
+<p>More info on <?php echo '<a href="' . $p2pool_address . '">'. $p2pool_address; ?></a> where you can find out how to mine and see Vertcoin stats for p2pool node. Monocle is mined separetly and there are no stats for that.
+<p>All times are in <?php echo $local_timezone; ?> time.
 <p>You can click on your VTC/MON address to get to your stats page.
 <p>Sudden drop of unpaid balances since laste update is because there was a bug with reading of database. Theese values should be ok ;)
+
 <?php
 
   $htmlbody = file_get_contents('./include/gen-active.html'); 
+
 
   if ( isset($_GET['vtc']) ) {  
     $safeVtc = htmlspecialchars($_GET['vtc'],ENT_QUOTES);

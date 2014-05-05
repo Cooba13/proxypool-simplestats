@@ -1,9 +1,10 @@
 <?php
 
-  $now = gmdate("c");
-
   require_once dirname(__FILE__) . "/../include/config.php";
-  
+
+  date_default_timezone_set($local_timezone);
+  $now = date("Y-m-d\TH:i:s");
+
   $db = mysql_connect($db_host, $db_user, $db_password);
 
   if (!$db) die('Error connecting to db');

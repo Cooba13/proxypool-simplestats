@@ -5,6 +5,8 @@
 
   echo "<h3>Personal stats<h3>";
 
+  date_default_timezone_set($local_timezone);
+
   if ( isset($safeVtc) && isset($safeVtc) ) {
 
     $file = "./include/gen-" . $safeVtc . "-" . $safeMon . ".html";
@@ -15,12 +17,12 @@
       $file_modified = 0;
     };
 
-    if ( $file_modified > gmdate("U") ) {
+    if ( $file_modified > date("Y-m-d\TH:i:s") ) {
       include $file;
     } else {
       $htmlbody = '';
       $htmlbody .= "<h4>Shares to be paid</h4>";
-      $htmlbody .= "<p>This table must be 5 minutes old to update. Last update at " . gmdate("c") . "<br />";
+      $htmlbody .= "<p>This table must be 5 minutes old to update. Last update at " . date("Y-m-d\TH:i:s") . "<br />";
       $htmlbody .= "PLEASE keep in mind that theese numbers are predictions and estimates!";
       $htmlbody .= "<table class='table table-bordered table-striped'><tr><th>Address</th><th>Amount</th></tr>";      
 
@@ -69,12 +71,12 @@
       $vtc_modified = 0;
     }; 
 
-    if ( $vtc_modified > gmdate("U") ) {
+    if ( $vtc_modified > date("Y-m-d\TH:i:s") ) {
       include $vtc_file;
     } else {
       $htmlbody = '';
       $htmlbody .= "<h4>Vertcoin Transactions</h4>";
-      $htmlbody .= "<p>This table must be 5 minutes old to update. Last update at " . gmdate("c");
+      $htmlbody .= "<p>This table must be 5 minutes old to update. Last update at " . date("Y-m-d\TH:i:s");
 
       require_once dirname(__FILE__) . "/../include/config.php";
 
@@ -114,12 +116,12 @@
       $mon_modified = 0;
     };
 
-    if ( $mon_modified > gmdate("U") ) {
+    if ( $mon_modified > date("Y-m-d\TH:i:s") ) {
       include $mon_file;
     } else {
       $htmlbody = '';
       $htmlbody .= "<h4>Monocle Transactions</h4>";
-      $htmlbody .= "<p>This table must be 5 minutes old to update. Last update at " . gmdate("c");
+      $htmlbody .= "<p>This table must be 5 minutes old to update. Last update at " . date("Y-m-d\TH:i:s");
 
       require_once dirname(__FILE__) . "/../include/config.php";
 
