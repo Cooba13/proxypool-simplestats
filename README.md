@@ -15,11 +15,19 @@ Something like
 
 ```
 * * * * * cd /var/www/proxypool/bin; /usr/bin/php /var/www/proxypool/bin/active.php
-
 */5 * * * * cd /var/www/proxypool/bin; /usr/bin/php /var/www/proxypool/bin/unpaid.php; /usr/bin/php /var/www/proxypool/bin/tx.php
 ```
 
 in crontab works.
+
+Check that mysql is set to your local timezone.
+
+```
+mysql -u proxypool -p
+select foundtime, now() from stats_shares order by foundtime desc limit 1;
+```
+
+If those 2 values are really close (few seconds apart) you should be ok, otherwise set your timezone of mysql to your local. If your mysql timezone and system timezone does not match, you will probably not get any data in active users category.
 
 Don't forget to edit text in ./index.php so it points to your p2pool node, proxystats and timezone.
 
