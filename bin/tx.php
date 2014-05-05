@@ -21,10 +21,10 @@
   $sum_amount = 0;
   while ( $row = mysql_fetch_array($result) ): {
     $output .= "<tr><td>" . $row[0] ."</td><td><a href=\"http://cryptexplorer.com/tx/" . $row[1] . "\">" . $row[1] . "</a></td>";
-    $output .= "<td>". $row[2] . "</td></tr>";
+    $output .= "<td>". round($row[2], 8) . "</td></tr>";
     $sum_amount += $row[2];
   } endwhile;
-  $output .= "<tr><td colspan=2><td>". $sum_amount . "</td></tr>";
+  $output .= "<tr><td colspan=2><td>". round($sum_amount, 8) . "</td></tr>";
   $output .= "</table>";
 
   $output .= "<h3>List of MON transactions</h3>";
@@ -36,10 +36,10 @@
   $sum_amount = 0;
   while ( $row = mysql_fetch_array($result) ): {
     $output .= "<tr><td>" . $row[0] ."</td><td><a href=\"http://cryptexplorer.com/tx/" . $row[1] . "\">" . $row[1] . "</a></td>";
-    $output .= "<td>". $row[2] . "</td></tr>";
+    $output .= "<td>". round($row[2], 8) . "</td></tr>";
     $sum_amount += $row[2];
   } endwhile;
-  $output .= "<tr><td colspan=2><td>". $sum_amount . "</td></tr>";
+  $output .= "<tr><td colspan=2><td>". round($sum_amount, 8) . "</td></tr>";
   $output .= "</table>";
 
 

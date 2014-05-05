@@ -28,9 +28,9 @@
       $row_mon = mysql_fetch_array($result_mon);
       $sum_vtc += $row_vtc[1];
       $sum_mon += $row_mon[1];
-      $output .= "<tr><td>" . $row_vtc[0] . "</td><td>" . $row_vtc[1] . "</td><td>" . $row_mon[0] . "</td><td>" . $row_mon[1] . "</td></tr>";
+      $output .= "<tr><td>" . $row_vtc[0] . "</td><td>" . round($row_vtc[1], 8) . "</td><td>" . $row_mon[0] . "</td><td>" . round($row_mon[1], 8) . "</td></tr>";
     } endwhile;
-    $output .= "<tr><td></td><td>" . $sum_vtc . "</td><td></td><td>" . $sum_mon . "</td></table>";
+    $output .= "<tr><td></td><td>" . round($sum_vtc, 8) . "</td><td></td><td>" . round($sum_mon, 8) . "</td></table>";
   };
 
   mysql_close($db);

@@ -32,9 +32,9 @@
         $hashrate_total += $hashrate;
       };
       $hyperlink = "?vtc=" . $row[0] . "&mon=" . $row[1];
-      $output .= "<tr><td><a href=\"" . $hyperlink . "\">" . $row[0] . "</a></td><td><a href=\"" . $hyperlink . "\">" . $row[1] . "</a></td><td>" . $hashrate .  "</td></tr>";
+      $output .= "<tr><td><a href=\"" . $hyperlink . "\">" . $row[0] . "</a></td><td><a href=\"" . $hyperlink . "\">" . $row[1] . "</a></td><td>" . round($hashrate, 2) .  "</td></tr>";
     } endwhile;
-    $output .= "<tr><td colspan=\"2\"><td>" . $hashrate_total . "</td></table>";
+    $output .= "<tr><td colspan=\"2\"><td>" . round($hashrate_total, 2) . "</td></table>";
   };
 
   mysql_close($db);
