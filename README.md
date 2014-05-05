@@ -11,7 +11,11 @@ Beautification of main page by TheoRettish http://mon.qemulab.com/
 INSTALLATION
 ===========
 
-First you need to download this repositoty to location, where apache or some other web server can reach it. Then copy ./include/config.example.php to **./include/config.php** and set all needed values.
+First you need to download this repositoty to location, where apache or some other web server can reach it.
+
+Then copy *./include/config.example.php* to **./include/config.php** and set all needed values.
+
+
 Set scheduler to run ./bin/tx.php ./bin/active.php and ./bin/unpaid.php
 Something like
 
@@ -30,8 +34,6 @@ select foundtime, now() from stats_shares order by foundtime desc limit 1;
 ```
 
 If those 2 values are really close (few seconds apart) you should be ok, otherwise set your timezone of mysql to your local. If your mysql timezone and system timezone does not match, you will probably not get any data in active users category.
-
-Don't forget to edit text in ./index.php so it points to your p2pool node, proxystats and timezone.
 
 Now you should be able to view stats from browser at http://yourhost.com/proxypool/
 
