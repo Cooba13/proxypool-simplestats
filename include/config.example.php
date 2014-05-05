@@ -1,4 +1,4 @@
-<?
+<?php
 
   $db_host = 'localhost'; # machine running mysql db
   $db_user = 'proxypool'; # mysql user for proxypool
