@@ -14,41 +14,37 @@
 <h2>Simple stats for proxypool</h2>
 <p>This is just fetch from database, dont take numbers seriously, it is really rough estimate ;)
 <p>More info on <a href="http://whatever.kn.vutbr.cz:9172/static/">http://whatever.kn.vutbr.cz:9172/static/</a> where you can find out how to mine and see Vertcoin stats for p2pool node. Monocle is mined separetly and there are no stats for that.
-<p>All times are in local time, CEST which is UTC+2.
-<p>You can now use <b>http://whatever.kn.vutbr.cz/proxypool/?vtc=YourVTCAddress&mon=YourMONAddress</b> to highlight your VTC and MON address ;)
+<p>All times are in UTC.
+<p>You can click on your VTC/MON address to get to your stats page.
+<p>Sudden drop of unpaid balances since laste update is because there was a bug with reading of database. Theese values should be ok ;)
 <?php
 
-  $htmlbody = file_get_contents('./include/gen-active.html') . file_get_contents('./include/gen-unpaid.html') . file_get_contents('./include/gen-tx.html');
+  $htmlbody = file_get_contents('./include/gen-active.html'); 
 
   if ( isset($_GET['vtc']) ) {  
     $safeVtc = htmlspecialchars($_GET['vtc'],ENT_QUOTES);
-
-    $pattern = array();
-    $pattern[0] = '/><a href="http:\/\/cryptexplorer.com\/address\/' . $safeVtc . '"/';
-    $pattern[1] = '/d>' . $safeVtc . '/';
-    $replacement = array();
-    $replacement[0] = ' class="highlight_address"><a href="http://cryptexplorer.com/address/' . $safeVtc . '"/';;
-    $replacement[1] = 'd class="highlight_address">' . $safeVtc;
-
-    $htmlbody = preg_replace($pattern, $replacement, $htmlbody);
+    $htmlbody = str_replace("<tr><td><a href=\"?vtc=" . $safeVtc, "<tr class=\"highlight_address\"><td><a href=\"?vtc=". $safeVtc, $htmlbody);
   };
 
   if ( isset($_GET['mon']) ) {
     $safeMon = htmlspecialchars($_GET['mon'],ENT_QUOTES);
-
-    $pattern = array();
-    $pattern[0] = '/><a href="http:\/\/cryptexplorer.com\/address\/' . $safeMon . '"/';
-    $pattern[1] = '/d>' . $safeMon . '/';
-    $replacement = array();
-    $replacement[0] = ' class="highlight_address"><a href="http://cryptexplorer.com/address/' . $safeMon . '"/';;
-    $replacement[1] = 'd class="highlight_address">' . $safeMon;
-
-    $htmlbody = preg_replace($pattern, $replacement, $htmlbody);
-
   };
 
   echo $htmlbody;
+
+  if ( !isset($_GET['vtc']) && !isset($_GET['mon'])) {
+    include "./include/gen-unpaid.html";
+    include "./include/gen-tx.html";
+  } else {
+    include "./bin/tx-user.php";
+  }
+
+ 
 ?>
+</div>
+<div class="panel-footer">
+Made by <a href="https://github.com/Cooba13/proxypool-simplestats">Cooba13</a>
+If you feel the need VTC: Vt39dQgGN6oJpycARRHRtGVrz1nngjaV7b MON: MDbTCpvBsMuSBfGRHi4NT8cD5EH1uE9qCa
 </div>
 </body>
 </html>

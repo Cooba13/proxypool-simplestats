@@ -7,31 +7,35 @@
 
   mysql_select_db($db_db);
 
-  $now = date("c");
+  $now = gmdate("c");
 
   $sum_mon = 0;
   $sum_vtc = 0;
 
   $output = '';
 
-  $result = mysql_query("select distinct(user), auxuser, sum(monvalue), sum(vtcvalue) from stats_shares group by user;");
-  $rows = mysql_num_rows($result);
-  if ($rows = 0) {
+  $result_vtc = mysql_query("select distinct(user), sum(vtcvalue) from stats_shares where vtcpaid = 0 group by user;");
+  $result_mon = mysql_query("select distinct(auxuser), sum(monvalue) from stats_shares where monpaid = 0 group by user;");
+  $rows_vtc = mysql_num_rows($result_vtc);
+  $rows_mon = mysql_num_rows($result_mon);
+  if ( $rows_vtc == 0 && $rows_mon == 0 ) {
      $output = "Nothing to display";
   } else {
-    $output .= "<h3>All times, good times</h3><p>This is table of not yet paid submitted shares<table class='table table-bordered table-striped'><th>VTC</th><th>MON</th><th>MON value</th><th>VTC value</th>";
+    $output .= "<h3>All times, good times</h3><p>This is table of not yet paid submitted shares.";
+    $output .= "<table class='table table-bordered table-striped'><th>VTC</th><th>VTC value</th><th>MON</th><th>MON value</th>";
     $output .= "<p>This table is updated every 5 minutes. Last update " . $now;
-    while ( $row = mysql_fetch_array($result) ): {
-      $sum_mon += $row[2];
-      $sum_vtc += $row[3];
-      $output .= "<tr><td>" . $row[0] . "</td><td>" . $row[1] . "</td><td>" . $row[2] . "</td><td>" . $row[3] . "</td></tr>";
+    while ( $row_vtc = mysql_fetch_array($result_vtc) ): {
+      $row_mon = mysql_fetch_array($result_mon);
+      $sum_vtc += $row_vtc[1];
+      $sum_mon += $row_mon[1];
+      $output .= "<tr><td>" . $row_vtc[0] . "</td><td>" . $row_vtc[1] . "</td><td>" . $row_mon[0] . "</td><td>" . $row_mon[1] . "</td></tr>";
     } endwhile;
-    $output .= "<tr><td colspan=\"2\"><td>" . $sum_mon . "</td><td>" . $sum_vtc . "</td></table>";
+    $output .= "<tr><td></td><td>" . $sum_vtc . "</td><td></td><td>" . $sum_mon . "</td></table>";
   };
 
   mysql_close($db);
 
-  $file = getcwd() . "/../include/gen-unpaid.html";
+  $file = dirname(__FILE__) . "/../include/gen-unpaid.html";
   file_put_contents($file, $output);
 
 ?>

@@ -1,3 +1,4 @@
 include/config.php
 include/gen-*.html
-index_dev.php
+include/mon-*.html
+include/vtc-*.html

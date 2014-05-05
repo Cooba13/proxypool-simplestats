@@ -1,7 +1,6 @@
 <?php
 
-
-  $now = date("c");
+  $now = gmdate("c");
 
   require_once dirname(__FILE__) . "/../include/config.php";
   
@@ -15,31 +14,36 @@
 
   $output .= "<h3>List of VTC transactions</h3>";
   $output .= "<p>This table is updated every 5 minutes. Last update " . $now;
-  $output .= "<table class='table table-bordered table-striped'><tr><th>Date</th><th>TX Hash</th><th>user</th><th>Amount</th></tr>";
+  $output .= "<table class='table table-bordered table-striped'><tr><th>Date</th><th>TX Hash</th><th>Amount</th></tr>";
 
-  $query = "select stats_transactions.date_sent, stats_transactions.txhash, stats_usertransactions.user, stats_usertransactions.amount from stats_transactions inner join stats_usertransactions on stats_transactions.id = stats_usertransactions.tx_id and stats_usertransactions.coin = 'vtc' order by stats_transactions.date_sent desc;";
+  $query = "select date_sent, txhash, amount from stats_transactions where coin='vtc';"; 
   $result = mysql_query($query);
+  $sum_amount = 0;
   while ( $row = mysql_fetch_array($result) ): {
     $output .= "<tr><td>" . $row[0] ."</td><td><a href=\"http://cryptexplorer.com/tx/" . $row[1] . "\">" . $row[1] . "</a></td>";
-    $output .= "<td><a href=\"http://cryptexplorer.com/address/" . $row[2] . "\">". $row[2] . "</a></td><td>". $row[3] . "</td></tr>";
+    $output .= "<td>". $row[2] . "</td></tr>";
+    $sum_amount += $row[2];
   } endwhile;
+  $output .= "<tr><td colspan=2><td>". $sum_amount . "</td></tr>";
   $output .= "</table>";
 
   $output .= "<h3>List of MON transactions</h3>";
   $output .= "<p>This table is updated every 5 minutes. Last update " . $now;
-  $output .= "<table class='table table-bordered table-striped'><tr><th>Date</th><th>TX Hash</th><th>user</th><th>Amount</th></tr>";
+  $output .= "<table class='table table-bordered table-striped'><tr><th>Date</th><th>TX Hash</th><th>Amount</th></tr>";
 
-  $query = "select stats_transactions.date_sent, stats_transactions.txhash, stats_usertransactions.user, stats_usertransactions.amount from stats_transactions inner join stats_usertransactions on stats_transactions.id = stats_usertransactions.tx_id and stats_usertransactions.coin = 'mon' order by stats_transactions.date_sent desc;";
+  $query = "select date_sent, txhash, amount from stats_transactions where coin='mon';";
   $result = mysql_query($query);
+  $sum_amount = 0;
   while ( $row = mysql_fetch_array($result) ): {
-    $output .= "<tr><td>" . $row[0] ."</td><a href=\"http://cryptexplorer.com/tx/" . $row[1] . "\"><td>" . $row[1] . "</td></a>";
-    $output .= "<td><a href=\"http://cryptexplorer.com/address/" . $row[2] . "\">". $row[2] . "</a></td><td>". $row[3] . "</td></tr>";
+    $output .= "<tr><td>" . $row[0] ."</td><td><a href=\"http://cryptexplorer.com/tx/" . $row[1] . "\">" . $row[1] . "</a></td>";
+    $output .= "<td>". $row[2] . "</td></tr>";
+    $sum_amount += $row[2];
   } endwhile;
+  $output .= "<tr><td colspan=2><td>". $sum_amount . "</td></tr>";
   $output .= "</table>";
 
-  mysql_close($db);
 
-  $file = getcwd() . "/../include/gen-tx.html";
+  $file = dirname(__FILE__) . "/../include/gen-tx.html";
   file_put_contents($file, $output);
 
 
