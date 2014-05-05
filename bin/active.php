@@ -6,7 +6,7 @@
   if (!$db) die('Error connecting to db');
 
   mysql_select_db($db_db);
-  $result = mysql_query("select distinct(user), auxuser from stats_shares where foundtime >= date_sub(now(), interval 5 minute) group by user");
+  $result = mysql_query("select distinct(user), auxuser from stats_shares where foundtime >= date_sub(now(), interval 5 minute) group by user;");
   $rows = mysql_num_rows($result);
 
   $hashrate_total = 0;
