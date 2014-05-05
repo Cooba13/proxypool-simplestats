@@ -5,11 +5,13 @@ This is quick and dirty mashup of php code to get some info from p2proxy (VTC/MO
 
 Bootstrap support added by https://github.com/darrenturn90/
 
+Beautification of main page by TheoRettish http://mon.qemulab.com/
+
 
 INSTALLATION
 ===========
 
-First you need to download this repositoty to location, where apache or some other web server can reach it. Then copy ./include/config.example.php to ./include/config.php and set all needed values.
+First you need to download this repositoty to location, where apache or some other web server can reach it. Then copy ./include/config.example.php to **./include/config.php** and set all needed values.
 Set scheduler to run ./bin/tx.php ./bin/active.php and ./bin/unpaid.php
 Something like
 
