@@ -17,7 +17,7 @@
       $file_modified = 0;
     };
 
-    if ( $file_modified > date("Y-m-d\TH:i:s") ) {
+    if ( $file_modified > date("U") ) {
       include $file;
     } else {
       $htmlbody = '';
@@ -71,7 +71,8 @@
       $vtc_modified = 0;
     }; 
 
-    if ( $vtc_modified > date("Y-m-d\TH:i:s") ) {
+
+    if ( $vtc_modified > date("U") ) {
       include $vtc_file;
     } else {
       $htmlbody = '';
@@ -116,7 +117,7 @@
       $mon_modified = 0;
     };
 
-    if ( $mon_modified > date("Y-m-d\TH:i:s") ) {
+    if ( $mon_modified > date("U") ) {
       include $mon_file;
     } else {
       $htmlbody = '';
