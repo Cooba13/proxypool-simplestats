@@ -15,7 +15,7 @@
 
   $output .= "<h3>List of VTC transactions</h3>";
   $output .= "<p>This table is updated every 5 minutes. Last update " . $now;
-  $output .= "<table class='table table-bordered table-striped'><tr><th>Date</th><th>TX Hash</th><th>Amount</th></tr>";
+  $output .= "<table class='table table-bordered table-striped table-monospace'><tr><th>Date</th><th>TX Hash</th><th>Amount</th></tr>";
 
   $query = "select date_sent, txhash, amount from stats_transactions where coin='vtc' order by date_sent desc;"; 
   $result = mysql_query($query);
@@ -30,7 +30,7 @@
 
   $output .= "<h3>List of MON transactions</h3>";
   $output .= "<p>This table is updated every 5 minutes. Last update " . $now;
-  $output .= "<table class='table table-bordered table-striped'><tr><th>Date</th><th>TX Hash</th><th>Amount</th></tr>";
+  $output .= "<table class='table table-bordered table-striped table-monospace'><tr><th>Date</th><th>TX Hash</th><th>Amount</th></tr>";
 
   $query = "select date_sent, txhash, amount from stats_transactions where coin='mon' order by date_sent desc;";
   $result = mysql_query($query);

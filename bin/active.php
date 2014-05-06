@@ -20,7 +20,7 @@
   if ($rows == 0) {
     $output .= "Nothing to display";
   } else {
-    $output .= "<h3>Last 5 minutes stats</h3><table class='table table-bordered table-striped'><th>VTC</th><th>MON</th><th>Hashrate (khs)</th>";
+    $output .= "<h3>Last 5 minutes stats</h3><table class='table table-bordered table-striped table-monospace'><th>VTC</th><th>MON</th><th>Hashrate (khs)</th>";
     $output .=  "<p>This table is updated every one minute. Last update " . $now;
     while ( $row = mysql_fetch_array($result) ): {
       $query_hash = "select count(user), avg(sharediff) from stats_shares where user='" . $row[0] . "' and foundtime >= date_sub(now(), interval 5 minute);";
