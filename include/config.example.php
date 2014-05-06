@@ -9,5 +9,6 @@
   $p2pool_address = 'whatever.kn.vutbr.cz'; # url of your p2pool vtc node (do not use http:// or port
   $p2pool_fee = '0.5'; #fee of your node
   $node_location = 'Czech Republic'; # Node location
+  $monospace_tables = False; # True or False
 
 ?>

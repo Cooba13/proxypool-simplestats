@@ -24,7 +24,9 @@
       $htmlbody .= "<h4>Shares to be paid</h4>";
       $htmlbody .= "<p>This table must be 5 minutes old to update. Last update at " . date("Y-m-d\TH:i:s") . "<br />";
       $htmlbody .= "PLEASE keep in mind that theese numbers are predictions and estimates!";
-      $htmlbody .= "<table class='table table-bordered table-striped table-monospace'><tr><th>Address</th><th>Amount</th></tr>";      
+      $htmlbody .= "<table class='table table-bordered table-striped";
+      if ( $monospace_tables ) $htmlbody .= " table-monospace";
+      $htmlbody .= "'><tr><th>Address</th><th>Amount</th></tr>";      
 
       require_once dirname(__FILE__) . "/../include/config.php";
 
@@ -90,7 +92,9 @@
       if ( !$result ) {
          $htmlbody .= "<p>No VertCoin transactions yet!";
       } else {
-        $htmlbody .= "<table class='table table-bordered table-striped table-monospace'><tr><th>Date</th><th>Transaction</th><th>Amount</th></tr>";
+        $htmlbody .= "<table class='table table-bordered table-striped";
+        if ( $monospace_tables ) $htmlbody .= " table-monospace";
+        $htmlbody .= "'><tr><th>Date</th><th>Transaction</th><th>Amount</th></tr>";
         $sum_amount = 0;
         while ( $row = mysql_fetch_array($result) ): {
           $htmlbody .= "<tr><td>" . date("Y-m-d H:i:s", strtotime($row[0].' UTC')) . "</td><td><a href=\"http://cryptexplorer.com/tx/" . $row[1] . "\">" . $row[1] . "</a></td><td class='numbers'>" . sprintf("%.08f", $row[2]) . "</td></tr>";
@@ -135,7 +139,9 @@
       if ( !$result ) {
         $htmlbody .= "<p>No Monocle transactions yet!"; 
       } else {
-        $htmlbody .= "<table class='table table-bordered table-striped table-monospace'><tr><th>Date</th><th>Transaction</th><th>Amount</th></tr>";
+        $htmlbody .= "<table class='table table-bordered table-striped";
+        if ( $monospace_tables ) $htmlbody .= " table-monospace";
+        $htmlbody .= "'><tr><th>Date</th><th>Transaction</th><th>Amount</th></tr>";
         $sum_amount = 0;
         while ( $row = mysql_fetch_array($result) ): {
           $htmlbody .= "<tr><td>" . date("Y-m-d H:i:s", strtotime($row[0].' UTC')) . "</td><td><a href=\"http://cryptexplorer.com/tx/" . $row[1] . "\">" . $row[1] . "</a></td><td class='numbers'>" . sprintf("%.08f" ,$row[2]) . "</td></tr>";
