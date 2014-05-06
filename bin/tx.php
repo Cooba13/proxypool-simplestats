@@ -22,10 +22,10 @@
   $sum_amount = 0;
   while ( $row = mysql_fetch_array($result) ): {
     $output .= "<tr><td>" . date("Y-m-d H:i:s", strtotime($row[0].' UTC')) ."</td><td><a href=\"http://cryptexplorer.com/tx/" . $row[1] . "\">" . $row[1] . "</a></td>";
-    $output .= "<td>". round($row[2], 8) . "</td></tr>";
+    $output .= "<td class='numbers'>". sprintf("%.08f", $row[2]) . "</td></tr>";
     $sum_amount += $row[2];
   } endwhile;
-  $output .= "<tr><td colspan=2><td>". round($sum_amount, 8) . "</td></tr>";
+  $output .= "<tr><td colspan=2><td class='numbers'>". sprintf("%.08f", $sum_amount) . "</td></tr>";
   $output .= "</table>";
 
   $output .= "<h3>List of MON transactions</h3>";
@@ -37,10 +37,10 @@
   $sum_amount = 0;
   while ( $row = mysql_fetch_array($result) ): {
     $output .= "<tr><td>" . date("Y-m-d H:i:s", strtotime($row[0].' UTC')) ."</td><td><a href=\"http://cryptexplorer.com/tx/" . $row[1] . "\">" . $row[1] . "</a></td>";
-    $output .= "<td>". round($row[2], 8) . "</td></tr>";
+    $output .= "<td class='numbers'>". sprintf("%.08f", $row[2]) . "</td></tr>";
     $sum_amount += $row[2];
   } endwhile;
-  $output .= "<tr><td colspan=2><td>". round($sum_amount, 8) . "</td></tr>";
+  $output .= "<tr><td colspan=2><td class='numbers'>". sprintf("%.08f", $sum_amount) . "</td></tr>";
   $output .= "</table>";
 
 

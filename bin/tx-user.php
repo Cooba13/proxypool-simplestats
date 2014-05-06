@@ -38,7 +38,7 @@
         $htmlbody .= "<td colspan=2>No VTC shares to be paid yet</td>";
       } else {
         $row = mysql_fetch_array($result);
-        $htmlbody .= "<tr><td>" . $row[0] . "</td><td>" . round($row[1], 8) . "</td></tr>";
+        $htmlbody .= "<tr><td>" . $row[0] . "</td><td class='numbers'>" . sprintf("%.08f", $row[1]) . "</td></tr>";
       };
 
       $query = "select auxuser, sum(monvalue) from stats_shares where monpaid=0 and auxuser='" . $safeMon . "';";
@@ -47,7 +47,7 @@
         $htmlbody .= "<td colspan=2>No MON shares to be paid yet</td>";
       } else {
         $row = mysql_fetch_array($result);
-        $htmlbody .= "<tr><td>" . $row[0] . "</td><td>" . round($row[1], 8) . "</td></tr>";
+        $htmlbody .= "<tr><td>" . $row[0] . "</td><td class='numbers'>" . sprintf("%.08f", $row[1]) . "</td></tr>";
       };
 
       $htmlbody .= "</table>";
@@ -93,10 +93,10 @@
         $htmlbody .= "<table class='table table-bordered table-striped'><tr><th>Date</th><th>Transaction</th><th>Amount</th></tr>";
         $sum_amount = 0;
         while ( $row = mysql_fetch_array($result) ): {
-          $htmlbody .= "<tr><td>" . date("Y-m-d H:i:s", strtotime($row[0].' UTC')) . "</td><td><a href=\"http://cryptexplorer.com/tx/" . $row[1] . "\">" . $row[1] . "</a></td><td>" . round($row[2], 8) . "</td></tr>";
+          $htmlbody .= "<tr><td>" . date("Y-m-d H:i:s", strtotime($row[0].' UTC')) . "</td><td><a href=\"http://cryptexplorer.com/tx/" . $row[1] . "\">" . $row[1] . "</a></td><td class='numbers'>" . sprintf("%.08f", $row[2]) . "</td></tr>";
           $sum_amount += $row[2];
         } endwhile;
-        $htmlbody .= "<td colspan=2></td><td>" . round($sum_amount, 8) . "</td></table>";
+        $htmlbody .= "<td colspan=2></td><td class='numbers'>" . sprintf("%.08f", $sum_amount) . "</td></table>";
       };
 
       file_put_contents($vtc_file, $htmlbody);
@@ -138,10 +138,10 @@
         $htmlbody .= "<table class='table table-bordered table-striped'><tr><th>Date</th><th>Transaction</th><th>Amount</th></tr>";
         $sum_amount = 0;
         while ( $row = mysql_fetch_array($result) ): {
-          $htmlbody .= "<tr><td>" . date("Y-m-d H:i:s", strtotime($row[0].' UTC')) . "</td><td><a href=\"http://cryptexplorer.com/tx/" . $row[1] . "\">" . $row[1] . "</a></td><td>" . round($row[2], 8) . "</td></tr>";
+          $htmlbody .= "<tr><td>" . date("Y-m-d H:i:s", strtotime($row[0].' UTC')) . "</td><td><a href=\"http://cryptexplorer.com/tx/" . $row[1] . "\">" . $row[1] . "</a></td><td class='numbers'>" . sprintf("%.08f" ,$row[2]) . "</td></tr>";
           $sum_amount += $row[2];
         } endwhile;
-        $htmlbody .= "<td colspan=2></td><td>" . round($sum_amount, 8) . "</td></table>";
+        $htmlbody .= "<td colspan=2></td><td class='numbers'>" . sprintf("%.08f", $sum_amount) . "</td></table>";
       };
 
       file_put_contents($mon_file, $htmlbody);
