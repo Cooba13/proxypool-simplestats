@@ -55,7 +55,7 @@ All times are in <?php echo $local_timezone; ?> time<br />
        </tr>
        <tr>
          <td><b>Password</b></td>
-         <td>Your Monoclecoin Wallet Address</td>
+         <td>Your Monocle Wallet Address</td>
        </tr>
        <tr>
          <td><b>Fee</b></td>
