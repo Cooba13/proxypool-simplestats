@@ -25,7 +25,7 @@
   } else {
     $output .= "<h3>All times, good times</h3><p>This is table of not yet paid submitted shares.";
     $output .= "<table class='table table-bordered table-striped";
-    if ( $monospace_tables ) $output .= " table-monospace";
+    if ( $table_consolas ) $output .= " table-consolas";
     $output .= "'><th>VTC</th><th>VTC value</th><th>MON</th><th>MON value</th>";
     $output .= "<p>This table is updated every 5 minutes. Last update " . $now;
     while ( $row_vtc = mysql_fetch_array($result_vtc) ): {

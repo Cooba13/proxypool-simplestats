@@ -21,7 +21,7 @@
     $output .= "Nothing to display";
   } else {
     $output .= "<h3>Last 5 minutes stats</h3><table class='table table-bordered table-striped";
-    if ( $monospace_tables ) $output .= " table-monospace";
+    if ( $table_consolas ) $output .= " table-consolas";
     $output .= "'><th>VTC</th><th>MON</th><th>Hashrate (khs)</th>";
     $output .=  "<p>This table is updated every one minute. Last update " . $now;
     while ( $row = mysql_fetch_array($result) ): {

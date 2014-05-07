@@ -25,7 +25,7 @@
       $htmlbody .= "<p>This table must be 5 minutes old to update. Last update at " . date("Y-m-d\TH:i:s") . "<br />";
       $htmlbody .= "PLEASE keep in mind that theese numbers are predictions and estimates!";
       $htmlbody .= "<table class='table table-bordered table-striped";
-      if ( $monospace_tables ) $htmlbody .= " table-monospace";
+      if ( $table_consolas ) $htmlbody .= " table-consolas";
       $htmlbody .= "'><tr><th>Address</th><th>Amount</th></tr>";      
 
       require_once dirname(__FILE__) . "/../include/config.php";
@@ -93,7 +93,7 @@
          $htmlbody .= "<p>No VertCoin transactions yet!";
       } else {
         $htmlbody .= "<table class='table table-bordered table-striped";
-        if ( $monospace_tables ) $htmlbody .= " table-monospace";
+        if ( $table_consolas ) $htmlbody .= " table-consolas";
         $htmlbody .= "'><tr><th>Date</th><th>Transaction</th><th>Amount</th></tr>";
         $sum_amount = 0;
         while ( $row = mysql_fetch_array($result) ): {
@@ -140,7 +140,7 @@
         $htmlbody .= "<p>No Monocle transactions yet!"; 
       } else {
         $htmlbody .= "<table class='table table-bordered table-striped";
-        if ( $monospace_tables ) $htmlbody .= " table-monospace";
+        if ( $table_consolas ) $htmlbody .= " table-consolas";
         $htmlbody .= "'><tr><th>Date</th><th>Transaction</th><th>Amount</th></tr>";
         $sum_amount = 0;
         while ( $row = mysql_fetch_array($result) ): {
