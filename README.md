@@ -37,7 +37,7 @@ If those 2 values are really close (few seconds apart) you should be ok, otherwi
 
 Now you should be able to view stats from browser at http://yourhost.com/proxypool/
 
-In *config.php* you can setup **announcement** to True and write text of it in **./bin/announcement.html**. It will be displayed over the last 5 minute table.
+In *config.php* you can setup **announcement** to True and write text of it in **./include/announcement.html**. It will be displayed over the last 5 minute table.
 
 
 OTHER STUFF
