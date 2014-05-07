@@ -9,7 +9,7 @@ Beautification of main page by TheoRettish http://mon.qemulab.com/
 
 
 INSTALLATION
-===========
+============
 
 First you need to download this repositoty to location, where apache or some other web server can reach it.
 
@@ -36,6 +36,8 @@ select foundtime, now() from stats_shares order by foundtime desc limit 1;
 If those 2 values are really close (few seconds apart) you should be ok, otherwise set your timezone of mysql to your local. If your mysql timezone and system timezone does not match, you will probably not get any data in active users category.
 
 Now you should be able to view stats from browser at http://yourhost.com/proxypool/
+
+In *config.php* you can setup **announcement** to True and write text of it in **./bin/announcement.html**. It will be displayed over the last 5 minute table.
 
 
 OTHER STUFF

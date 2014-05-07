@@ -69,6 +69,13 @@ All times are in <?php echo $local_timezone; ?> time<br />
 </tr>
 </table>
 </table>
+<br />
+<?php if ( $announcement ) { ?>
+<div class = "alert alert-info">
+  <?php include "./include/announcement.html"; ?>
+</div>
+<?php }; ?>
+
 <?php
 
   $htmlbody = file_get_contents('./include/gen-active.html'); 
