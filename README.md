@@ -45,7 +45,7 @@ OTHER STUFF
 
 You can check out how this stuff works at http://whatever.kn.vutbr.cz/proxypool/
 
-If you feel the need to contact me, /q Cooba at #vertcoin on freenode.
+If you feel the need to contact me, /msg Cooba at #vertcoin on freenode.
 
 Some dust sent to my wallets is welcome xD
 
