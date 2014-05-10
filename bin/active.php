@@ -1,5 +1,8 @@
 <?php
 
+  # call check for last blocks (just because this script is already called every minute using scheduler)
+  include dirname(__FILE__) . "/wallet.php";
+
   require_once dirname(__FILE__) . "/../include/config.php";
 
   date_default_timezone_set($local_timezone); 
