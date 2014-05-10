@@ -3,3 +3,4 @@ include/gen-*.html
 include/mon-*.html
 include/vtc-*.html
 include/announcement.html
+.workspace

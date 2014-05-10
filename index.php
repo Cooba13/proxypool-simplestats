@@ -11,6 +11,7 @@
 
 <?php
   require_once dirname(__FILE__) . "/include/config.php";
+  require_once dirname(__FILE__) . "/include/gen-lastblock.php";
 ?>
 
 <body>
@@ -41,30 +42,39 @@ All times are in <?php echo $local_timezone; ?> time<br />
 <td>
   <table>
     <tr>
-       <td style="width:160px">
-          <h4>Getting started</h4>
-       </td>
-       <td></td>
-       </tr>
-         <td><b>URL</b> </td>
-         <td><p><code>stratum+tcp://<?php echo $p2pool_address; ?>:9555</p></code></td>
-       </tr>
-       <tr>
-         <td><b>Username:</b></td>
-         <td>Your Vertcoin Wallet Address</td>
-       </tr>
-       <tr>
-         <td><b>Password</b></td>
-         <td>Your Monocle Wallet Address</td>
-       </tr>
-       <tr>
-         <td><b>Fee</b></td>
-         <td><?php echo $p2pool_fee; ?>%</td>
-       </tr>
-       <tr>
-         <td><b>Node Location</b></td>
-         <td><?php echo $node_location; ?></td>
-       </tr>
+      <td style="width:160px">
+        <h4>Getting started</h4>
+      </td>
+      <td>
+      </td>
+    </tr>
+      <td><b>URL</b> </td>
+      <td><p><code>stratum+tcp://<?php echo $p2pool_address; ?>:9555</p></code></td>
+    </tr>
+    <tr>
+      <td><b>Username:</b></td>
+      <td>Your Vertcoin Wallet Address</td>
+    </tr>
+    <tr>
+      <td><b>Password</b></td>
+      <td>Your Monocle Wallet Address</td>
+    </tr>
+    <tr>
+      <td><b>Fee</b></td>
+      <td><?php echo $p2pool_fee; ?>%</td>
+    </tr>
+    <tr>
+      <td><b>Node Location</b></td>
+      <td><?php echo $node_location; ?></td>
+    </tr>
+    <tr>
+      <td><b>Last VTC block</b></td>
+      <td><?php echo $vtc_block_found; ?> (<?php echo $vtc_block_since; ?>)</td>
+    </tr>
+    <tr>
+      <td><b>Last MON block</b></td>
+      <td><?php echo $mon_block_found; ?> (<?php echo $mon_block_since; ?>)</td>
+    </tr>
 </td>
 </tr>
 </table>
