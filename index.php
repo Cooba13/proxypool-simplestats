@@ -1,19 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
-<link href="./theme/basic.css" rel="stylesheet">
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Simple ProxyPool stats</title>
-</head>
-
 <?php
   require_once dirname(__FILE__) . "/include/config.php";
   require_once dirname(__FILE__) . "/include/gen-lastblock.php";
 ?>
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+<link href="./theme/basic.css" rel="stylesheet">
+<?php if ( $show_email ) print '<script type="text/JavaScript" src="./js/email.js"></script>' . PHP_EOL; ?>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Simple ProxyPool stats</title>
+</head>
 <body>
 <div class="container">
 <h2>VTC/MON Merged Mining</h2>
@@ -66,6 +66,18 @@ All times are in <?php echo $local_timezone; ?> time<br />
     <tr>
       <td><b>Node Location</b></td>
       <td><?php echo $node_location; ?></td>
+    </tr>
+    <?php if ( $show_email ) {
+      print "<tr><td><b>Contact</b></td>" . PHP_EOL;
+      print "<td><script language=\"JavaScript\" type=\"text/javascript\"><!--" . PHP_EOL;
+      print "gen_mail_to_link('$lhs','$rhs','$subject')" . PHP_EOL;
+      print "// --> </script>" . PHP_EOL;
+      print "<noscript><em>Email address protected by JavaScript. Activate javascript to see the email.</em></noscript>" . PHP_EOL;
+      print "</td></tr>" . PHP_EOL;
+    } ?>
+    <tr>
+      <td><b>Auto Payout</b></td>
+      <td><?php echo $vtc_autopayout; ?> VTC / <?php echo $mon_autopayout; ?> MON</td>
     </tr>
     <tr>
       <td><b>Last VTC block</b></td>

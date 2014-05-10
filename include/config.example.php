@@ -23,4 +23,12 @@
   $mon_wallet_user = 'monoclerpc'; # rpc user of vtc wallet
   $mon_wallet_password = 'rpcpassword'; # rpc password of vtc wallet
   
+  $vtc_autopayout = '0.2'; # VTC Payout threshold (as set in /proxypool/payout/sharelogger.conf)
+  $mon_autopayout = '0.4'; # MON Payout threshold (as set in /proxypool/payout/sharelogger.conf)
+  
+  $show_email = False; # show email True or False
+  $lhs = 'support'; # part of email before @ (*support*@example.com)
+  $rhs = 'example.com'; # part of email after @ (support@*example.com*)
+  $subject = 'P2Proxy support'; # subject of email
+  
 ?>

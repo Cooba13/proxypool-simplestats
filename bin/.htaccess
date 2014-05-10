@@ -1,2 +1,1 @@
-allow from localhost station
 deny from all
