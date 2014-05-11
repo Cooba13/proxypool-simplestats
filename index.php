@@ -1,6 +1,7 @@
 <?php
   require_once dirname(__FILE__) . "/include/config.php";
-  require_once dirname(__FILE__) . "/include/gen-lastblock.php";
+  if ( file_exists(dirname(__FILE__) . "/include/gen-lastblock.php") ) 
+    require_once dirname(__FILE__) . "/include/gen-lastblock.php";
 ?>
 
 <!DOCTYPE html>
@@ -81,18 +82,18 @@ All times are in <?php echo $local_timezone; ?> time<br />
     </tr>
     <tr>
       <td><b>Last VTC block</b></td>
-      <td><?php echo $vtc_block_found; ?> (<?php echo $vtc_block_since; ?>)</td>
+      <td><?php if ( isset($vtc_block_found) ) { echo $vtc_block_found . "("; echo $vtc_block_since . ")"; } ?></td>
     </tr>
     <tr>
       <td><b>Last MON block</b></td>
-      <td><?php echo $mon_block_found; ?> (<?php echo $mon_block_since; ?>)</td>
+      <td><?php if ( isset($mon_block_found) ) { echo $mon_block_found . "("; echo $mon_block_since . ")"; } ?></td>
     </tr>
 </td>
 </tr>
 </table>
 </table>
 <br />
-<?php if ( $announcement ) { ?>
+<?php if ( $announcement && file_exists(dirname(__FILE__) . "/include/announcement.html") ) { ?>
 <div class = "alert alert-info">
   <?php include "./include/announcement.html"; ?>
 </div>
