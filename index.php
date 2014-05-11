@@ -29,6 +29,7 @@
   $(document).ready( function () {
     $('#vtc').dataTable();
     $('#mon').dataTable();
+    $('#unpaid').dataTable();
   } );
 </script>
 </head>
@@ -36,8 +37,8 @@
 <div class="container">
 <h2>VTC/MON Merged Mining</h2>
 <table>
-<tr>
-<td style="width:474px">
+<tr style="vertical-align: top;">
+<td style="width:474px;">
 <img alt="vertcoin icon" src="./img/vertcoin.png" style="height:80px;width:80px;" />
 <img alt="vertcoin icon" src="./img/monocle.png" style="height:80px;width:80px;" />
 <br>
@@ -105,6 +106,16 @@ All times are in <?php echo $local_timezone; ?> time<br />
       <td><b>Last MON block</b></td>
       <td><?php if ( isset($mon_block_found) ) { echo $mon_block_found . " ("; echo $mon_block_since . ")"; } ?></td>
     </tr>
+    <?php if ( $show_balance ) { ?>
+    <tr>
+      <td><b>VTC balance</b></td>
+      <td><?php if ( isset($vtc_balance) ) { echo $vtc_balance . " ("; echo $vtc_immature . ")"; } ?></td>
+    </tr>
+    <tr>
+      <td><b>MON balance</b></td>
+      <td><?php if ( isset($mon_balance) ) { echo $mon_balance . " ("; echo $mon_immature . ")"; } ?></td>
+    </tr>
+    <?php } ?>
 </td>
 </tr>
 </table>

@@ -15,7 +15,10 @@
   $sum_vtc = 0;
 
   $output = '';
-
+  $tbody = '<tbody>';
+  $thead = '';
+  $tfoot = '';
+  
   $result_vtc = mysql_query("select distinct(user), sum(vtcvalue) from stats_shares where vtcpaid = 0 group by user order by user;");
   $result_mon = mysql_query("select distinct(auxuser), sum(monvalue) from stats_shares where monpaid = 0 group by auxuser order by auxuser;");
   $rows_vtc = mysql_num_rows($result_vtc);
@@ -24,18 +27,20 @@
      $output = "Nothing to display";
   } else {
     $output .= "<h3>All times, good times</h3><p>This is table of not yet paid submitted shares.";
-    $output .= "<table class='table table-bordered table-striped";
+    $thead .= "<table class='table table-bordered table-striped";
     if ( $table_consolas ) $output .= " table-consolas";
-    $output .= "'><th>VTC</th><th>VTC value</th><th>MON</th><th>MON value</th>";
-    $output .= "<p>This table is updated every 5 minutes. Last update " . $now;
+    $thead .= "' id='unpaid'><thead><tr><th>VTC</th><th>VTC value</th><th>MON</th><th>MON value</th></tr></thead>";
+    $thead .= "<p>This table is updated every 5 minutes. Last update " . $now;
     while ( $row_vtc = mysql_fetch_array($result_vtc) ): {
       $row_mon = mysql_fetch_array($result_mon);
       $sum_vtc += $row_vtc[1];
       $sum_mon += $row_mon[1];
-      $output .= "<tr><td>" . $row_vtc[0] . "</td><td class='numbers'>" . sprintf("%.08f", $row_vtc[1]) . "</td><td>" . $row_mon[0] . "</td><td class='numbers'>" . sprintf("%.08f", $row_mon[1]) . "</td></tr>";
+      $tbody .= "<tr><td>" . $row_vtc[0] . "</td><td class='numbers'>" . sprintf("%.08f", $row_vtc[1]) . "</td><td>" . $row_mon[0] . "</td><td class='numbers'>" . sprintf("%.08f", $row_mon[1]) . "</td></tr>";
     } endwhile;
-    $output .= "<tr><td></td><td class='numbers'>" . sprintf("%.08f", $sum_vtc) . "</td><td></td><td class='numbers'>" . sprintf("%.08f", $sum_mon) . "</td></table>";
+    $tfoot .= "<tfoot><tr><td></td><td class='numbers'>" . sprintf("%.08f", $sum_vtc) . "</td><td></td><td class='numbers'>" . sprintf("%.08f", $sum_mon) . "</td></tfoot>";
   };
+  $tbody .= '</tbody></table>';
+  $output .= $thead . $tfoot . $tbody;
 
   mysql_close($db);
 

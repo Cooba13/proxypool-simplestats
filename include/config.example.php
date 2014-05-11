@@ -30,5 +30,7 @@
   $lhs = 'support'; # part of email before @ (*support*@example.com)
   $rhs = 'example.com'; # part of email after @ (support@*example.com*)
   $subject = 'P2Proxy support'; # subject of email
+
+  $show_balance = True; # Whether to show balance or not True or False  
   
 ?>
