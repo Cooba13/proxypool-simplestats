@@ -155,9 +155,14 @@ All times are in <?php echo $local_timezone; ?> time<br />
  
 ?>
 </div>
-<div class="panel-footer">
-Made by <a href="https://github.com/Cooba13/proxypool-simplestats">Cooba13</a>
-If you feel the need VTC: Vt39dQgGN6oJpycARRHRtGVrz1nngjaV7b MON: MDbTCpvBsMuSBfGRHi4NT8cD5EH1uE9qCa
+<div class="panel-footer" style="width: 100%; display: table; font-family: Consolas;">
+  <div style="display: table-row">
+    <div style="width: auto; display: table-cell;">
+      Made by <a href="https://github.com/Cooba13/proxypool-simplestats">Cooba13</a>
+      If you feel the need VTC: Vt39dQgGN6oJpycARRHRtGVrz1nngjaV7b MON: MDbTCpvBsMuSBfGRHi4NT8cD5EH1uE9qCa
+    </div>
+    <div style='width: 100px; display: table-cell; text-align: right;'> <?php echo `git describe --tags`; ?></div>
+  </div>
 </div>
 </body>
 </html>
