@@ -10,7 +10,7 @@
   if ( isset($safeVtc) && isset($safeVtc) ) {
 
     $file = "./include/gen-" . $safeVtc . "-" . $safeMon . ".html";
-
+    
     if ( file_exists($file) ) {
       $file_modified = filemtime($file) + 300;
     } else {
@@ -26,7 +26,7 @@
       $htmlbody .= "PLEASE keep in mind that theese numbers are predictions and estimates!";
       $htmlbody .= "<table class='table table-bordered table-striped";
       if ( $table_consolas ) $htmlbody .= " table-consolas";
-      $htmlbody .= "'><tr><th>Address</th><th>Amount</th></tr>";      
+      $htmlbody .= "'><thead><tr><th>Address</th><th>Amount</th></tr></thead>";
 
       require_once dirname(__FILE__) . "/../include/config.php";
 
@@ -66,7 +66,10 @@
 
   if ( isset($safeVtc) ) {
     $vtc_file = "./include/gen-" . $safeVtc . ".html";
-
+    $tbody = '<tbody>';
+    $thead = '';
+    $tfoot = '';
+    
     if ( file_exists($vtc_file) ) {
       $vtc_modified = filemtime($vtc_file) + 300; // move time 5 minutes into the future of file
     } else {
@@ -92,18 +95,19 @@
       if ( !$result ) {
          $htmlbody .= "<p>No VertCoin transactions yet!";
       } else {
-        $htmlbody .= "<table class='table table-bordered table-striped";
-        if ( $table_consolas ) $htmlbody .= " table-consolas";
-        $htmlbody .= "'><tr><th>Date</th><th>Transaction</th><th>Amount</th></tr>";
+        $thead .= "<table class='table table-bordered table-striped";
+        if ( $table_consolas ) $thead .= " table-consolas";
+        $thead .= "' id='vtc'><thead><tr><th>Date</th><th>Transaction</th><th>Amount</th></tr></thead>";
         $sum_amount = 0;
         while ( $row = mysql_fetch_array($result) ): {
-          $htmlbody .= "<tr><td>" . date("Y-m-d H:i:s", strtotime($row[0].' UTC')) . "</td><td><a href=\"http://cryptexplorer.com/tx/" . $row[1] . "\">" . $row[1] . "</a></td><td class='numbers'>" . sprintf("%.08f", $row[2]) . "</td></tr>";
+          $tbody .= "<tr><td>" . date("Y-m-d H:i:s", strtotime($row[0].' UTC')) . "</td><td><a href=\"http://cryptexplorer.com/tx/" . $row[1] . "\">" . $row[1] . "</a></td><td class='numbers'>" . sprintf("%.08f", $row[2]) . "</td></tr>";
           $sum_amount += $row[2];
         } endwhile;
-        $htmlbody .= "<td colspan=2></td><td class='numbers'>" . sprintf("%.08f", $sum_amount) . "</td></table>";
+        $tfoot .= "<tfoot><tr><td colspan=2></td><td class='numbers'>" . sprintf("%.08f", $sum_amount) . "</td></tr></tfoot>";
+        $tbody .= "</tbody>";
       };
 
-      file_put_contents($vtc_file, $htmlbody);
+      file_put_contents($vtc_file, $htmlbody . $thead . $tfoot . $tbody . "</table>");
 
       mysql_close($db);
 
@@ -114,7 +118,10 @@
 
   if ( isset($safeMon) ) {
     $mon_file = "./include/gen-" . $safeMon . ".html";
-
+    $tbody = '<tbody>';
+    $thead = '';
+    $tfoot = '';
+    
     if ( file_exists($mon_file) ) {
       $mon_modified = filemtime($mon_file) + 300;
     } else {
@@ -139,18 +146,19 @@
       if ( !$result ) {
         $htmlbody .= "<p>No Monocle transactions yet!"; 
       } else {
-        $htmlbody .= "<table class='table table-bordered table-striped";
-        if ( $table_consolas ) $htmlbody .= " table-consolas";
-        $htmlbody .= "'><tr><th>Date</th><th>Transaction</th><th>Amount</th></tr>";
+        $thead .= "<table class='table table-bordered table-striped";
+        if ( $table_consolas ) $thead .= " table-consolas";
+        $thead .= "' id='mon'><thead><tr><th>Date</th><th>Transaction</th><th>Amount</th></tr></thead>";
         $sum_amount = 0;
         while ( $row = mysql_fetch_array($result) ): {
-          $htmlbody .= "<tr><td>" . date("Y-m-d H:i:s", strtotime($row[0].' UTC')) . "</td><td><a href=\"http://cryptexplorer.com/tx/" . $row[1] . "\">" . $row[1] . "</a></td><td class='numbers'>" . sprintf("%.08f" ,$row[2]) . "</td></tr>";
+          $tbody .= "<tr><td>" . date("Y-m-d H:i:s", strtotime($row[0].' UTC')) . "</td><td><a href=\"http://cryptexplorer.com/tx/" . $row[1] . "\">" . $row[1] . "</a></td><td class='numbers'>" . sprintf("%.08f" ,$row[2]) . "</td></tr>";
           $sum_amount += $row[2];
         } endwhile;
-        $htmlbody .= "<td colspan=2></td><td class='numbers'>" . sprintf("%.08f", $sum_amount) . "</td></table>";
-      };
+        $tfoot .= "<tfoot><tr><td colspan=2></td><td class='numbers'>" . sprintf("%.08f", $sum_amount) . "</td></tr></tfoot>";
+        $tbody .= "</tbody>";
+        };
 
-      file_put_contents($mon_file, $htmlbody);
+      file_put_contents($mon_file, $htmlbody . $thead . $tfoot . $tbody . "</table>");
 
       mysql_close($db);
 

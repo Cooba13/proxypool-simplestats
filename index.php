@@ -10,10 +10,27 @@
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
 <link href="./theme/basic.css" rel="stylesheet">
 <?php if ( $show_email ) print '<script type="text/JavaScript" src="./js/email.js"></script>' . PHP_EOL; ?>
+<script type="text/javascript" charset="utf8" src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.0/js/jquery.dataTables.js"></script>
+<link href="//cdn.datatables.net/plug-ins/e9421181788/integration/bootstrap/3/dataTables.bootstrap.css" rel="stylesheet">
+<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/plug-ins/e9421181788/integration/bootstrap/3/dataTables.bootstrap.js"></script>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Simple ProxyPool stats</title>
+<script type="text/javascript">
+  $.extend( $.fn.dataTable.defaults, {
+    searching: false,
+    ordering: false,
+    pageLength: 10,
+    lengthChange: false
+  } );
+
+  $(document).ready( function () {
+    $('#vtc').dataTable();
+    $('#mon').dataTable();
+  } );
+</script>
 </head>
 <body>
 <div class="container">
