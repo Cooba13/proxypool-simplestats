@@ -14,7 +14,7 @@
     return sprintf ("%dd %02d:%02d", $days, $hours, $minutes);
   }
   
-  function walletLogic ($wallet) {
+  function walletLogic ($wallet, $minbalance) {
 
     $output = array("found_time" => "n/a",
                     "since_time" => "n/a",
@@ -64,18 +64,20 @@
       $count += $count;
     } while ( !$found_block );
 
-    $output['balance'] = $wallet->getbalance("") - $output['immature'];
+    if ( !isset($minbalance) ) $minbalance = 1.0;
+    
+    $output['balance'] = $wallet->getbalance("") - $output['immature'] - $minbalance;
 
     return $output;
   }
   
   $vertcoin_rpc = "http://" . $vtc_wallet_user . ":" . $vtc_wallet_password . "@" . $vtc_wallet_address . "/";
   $vertcoin = new jsonRPCClient($vertcoin_rpc);
-  $vertcoin_found = walletLogic($vertcoin);
+  $vertcoin_found = walletLogic($vertcoin, $minbalance);
 
   $monocle_rpc = "http://" . $mon_wallet_user . ":" . $mon_wallet_password . "@" . $mon_wallet_address . "/";
   $monocle = new jsonRPCClient($monocle_rpc);
-  $monocle_found = walletLogic($monocle);
+  $monocle_found = walletLogic($monocle, $minbalance);
 
   $output = '<?php $vtc_block_found="' . $vertcoin_found['found_time'] . '"; ';
   $output .= '$vtc_block_since="' . $vertcoin_found['since_time'] . '"; ';

@@ -32,5 +32,7 @@
   $subject = 'P2Proxy support'; # subject of email
 
   $show_balance = True; # Whether to show balance or not True or False  
+
+  $minbalance = 1.0; # minbalance as set in sharelogger.conf
   
 ?>
