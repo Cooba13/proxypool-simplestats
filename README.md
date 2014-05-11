@@ -39,6 +39,7 @@ Now you should be able to view stats from browser at http://yourhost.com/proxypo
 
 In *config.php* you can setup **announcement** to True and write text of it in **./include/announcement.html**. It will be displayed over the last 5 minute table.
 
+Make sure you have support for **json**. **apt-get install php5-json** should make it work (depends on your distribution)
 
 OTHER STUFF
 ===========
