@@ -42,7 +42,7 @@
               $found_block = True;
               break;
             }
-            if ( $value['category'] ) {
+            if ( $value['category'] == 'immature' ) {
               $output['immature'] += $value['amount'];
             }
           }
