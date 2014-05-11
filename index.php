@@ -25,6 +25,8 @@
     pageLength: 10,
     lengthChange: false
   } );
+  
+  <?php if ( $table_consolas ) print '$.fn.dataTableExt.oStdClasses.sTable = "table-consolas"' . PHP_EOL; ?>
 
   $(document).ready( function () {
     $('#vtc').dataTable();
