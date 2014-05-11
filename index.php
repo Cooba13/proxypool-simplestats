@@ -82,11 +82,11 @@ All times are in <?php echo $local_timezone; ?> time<br />
     </tr>
     <tr>
       <td><b>Last VTC block</b></td>
-      <td><?php if ( isset($vtc_block_found) ) { echo $vtc_block_found . "("; echo $vtc_block_since . ")"; } ?></td>
+      <td><?php if ( isset($vtc_block_found) ) { echo $vtc_block_found . " ("; echo $vtc_block_since . ")"; } ?></td>
     </tr>
     <tr>
       <td><b>Last MON block</b></td>
-      <td><?php if ( isset($mon_block_found) ) { echo $mon_block_found . "("; echo $mon_block_since . ")"; } ?></td>
+      <td><?php if ( isset($mon_block_found) ) { echo $mon_block_found . " ("; echo $mon_block_since . ")"; } ?></td>
     </tr>
 </td>
 </tr>
