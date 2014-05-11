@@ -26,7 +26,7 @@
       $htmlbody .= "PLEASE keep in mind that theese numbers are predictions and estimates!";
       $htmlbody .= "<table class='table table-bordered table-striped";
       if ( $table_consolas ) $htmlbody .= " table-consolas";
-      $htmlbody .= "'><thead><tr><th>Address</th><th>Amount</th></tr></thead>";
+      $htmlbody .= "'><thead><tr><th>Address</th><th class='numbers'>Amount</th></tr></thead>";
 
       require_once dirname(__FILE__) . "/../include/config.php";
 
@@ -97,7 +97,7 @@
       } else {
         $thead .= "<table class='table table-bordered table-striped";
         if ( $table_consolas ) $thead .= " table-consolas";
-        $thead .= "' id='vtc'><thead><tr><th>Date</th><th>Transaction</th><th>Amount</th></tr></thead>";
+        $thead .= "' id='vtc'><thead><tr><th>Date</th><th>Transaction</th><th class='numbers'>Amount</th></tr></thead>";
         $sum_amount = 0;
         while ( $row = mysql_fetch_array($result) ): {
           $tbody .= "<tr><td>" . date("Y-m-d H:i:s", strtotime($row[0].' UTC')) . "</td><td><a href=\"http://cryptexplorer.com/tx/" . $row[1] . "\">" . $row[1] . "</a></td><td class='numbers'>" . sprintf("%.08f", $row[2]) . "</td></tr>";
@@ -148,7 +148,7 @@
       } else {
         $thead .= "<table class='table table-bordered table-striped";
         if ( $table_consolas ) $thead .= " table-consolas";
-        $thead .= "' id='mon'><thead><tr><th>Date</th><th>Transaction</th><th>Amount</th></tr></thead>";
+        $thead .= "' id='mon'><thead><tr><th>Date</th><th>Transaction</th><th class='numbers'>Amount</th></tr></thead>";
         $sum_amount = 0;
         while ( $row = mysql_fetch_array($result) ): {
           $tbody .= "<tr><td>" . date("Y-m-d H:i:s", strtotime($row[0].' UTC')) . "</td><td><a href=\"http://cryptexplorer.com/tx/" . $row[1] . "\">" . $row[1] . "</a></td><td class='numbers'>" . sprintf("%.08f" ,$row[2]) . "</td></tr>";

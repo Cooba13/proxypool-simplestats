@@ -1,4 +1,4 @@
 tr.highlight_address > td { background-color: #222222 !important; color: #cccccc !important; }
-td.numbers { text-align: right; }
+.numbers { text-align: right; }
 table.table-consolas {  font-family: Consolas; font-weight: normal; }
 th { font-family: sans-serif; font-weight: bold; }

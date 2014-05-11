@@ -20,7 +20,7 @@
   $output .= "<p>This table is updated every 5 minutes. Last update " . $now;
   $thead .= "<table class='table table-bordered table-striped";
   if ( $table_consolas ) $output .= " table-consolas";
-  $thead .= "' id='vtc'><thead><tr><th>Date</th><th>TX Hash</th><th>Amount</th></tr></thead>";
+  $thead .= "' id='vtc'><thead><tr><th>Date</th><th>TX Hash</th><th class='numbers'>Amount</th></tr></thead>";
 
   $query = "select date_sent, txhash, amount from stats_transactions where coin='vtc' order by date_sent desc;"; 
   $result = mysql_query($query);
@@ -42,7 +42,7 @@
   $output .= "<p>This table is updated every 5 minutes. Last update " . $now;
   $thead .= "<table class='table table-bordered table-striped ";
   if ( $table_consolas ) $output .= "table-consolas";
-  $thead .= "' id='mon'><thead><tr><th>Date</th><th>TX Hash</th><th>Amount</th></tr></thead>";
+  $thead .= "' id='mon'><thead><tr><th>Date</th><th>TX Hash</th><th class='numbers'>Amount</th></tr></thead>";
 
   $query = "select date_sent, txhash, amount from stats_transactions where coin='mon' order by date_sent desc;";
   $result = mysql_query($query);
