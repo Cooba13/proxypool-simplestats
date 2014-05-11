@@ -1,5 +1,6 @@
 include/config.php
 include/gen-*.html
+include/gen-*.php
 include/mon-*.html
 include/vtc-*.html
 include/announcement.html
