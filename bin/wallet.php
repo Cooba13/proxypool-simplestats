@@ -64,12 +64,12 @@
       $count += $count;
     } while ( !$found_block );
 
-    if ( !isset($minbalance) ) $minbalance = 1.0;
-    
     $output['balance'] = $wallet->getbalance("") - $output['immature'] - $minbalance;
 
     return $output;
   }
+
+  if ( !isset($minbalance) ) $minbalance = 1.0;
   
   $vertcoin_rpc = "http://" . $vtc_wallet_user . ":" . $vtc_wallet_password . "@" . $vtc_wallet_address . "/";
   $vertcoin = new jsonRPCClient($vertcoin_rpc);
