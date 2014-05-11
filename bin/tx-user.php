@@ -20,6 +20,7 @@
     if ( $file_modified > date("U") ) {
       include $file;
     } else {
+      touch($file);
       $htmlbody = '';
       $htmlbody .= "<h4>Shares to be paid</h4>";
       $htmlbody .= "<p>This table must be 5 minutes old to update. Last update at " . date("Y-m-d\TH:i:s") . "<br />";
@@ -80,6 +81,7 @@
     if ( $vtc_modified > date("U") ) {
       include $vtc_file;
     } else {
+      touch($vtc_file);
       $htmlbody = '';
       $htmlbody .= "<h4>Vertcoin Transactions</h4>";
       $htmlbody .= "<p>This table must be 5 minutes old to update. Last update at " . date("Y-m-d\TH:i:s");
@@ -131,6 +133,7 @@
     if ( $mon_modified > date("U") ) {
       include $mon_file;
     } else {
+      touch($mon_file);
       $htmlbody = '';
       $htmlbody .= "<h4>Monocle Transactions</h4>";
       $htmlbody .= "<p>This table must be 5 minutes old to update. Last update at " . date("Y-m-d\TH:i:s");

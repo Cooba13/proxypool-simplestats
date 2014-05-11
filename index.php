@@ -161,7 +161,7 @@ All times are in <?php echo $local_timezone; ?> time<br />
       Made by <a href="https://github.com/Cooba13/proxypool-simplestats">Cooba13</a>
       If you feel the need VTC: Vt39dQgGN6oJpycARRHRtGVrz1nngjaV7b MON: MDbTCpvBsMuSBfGRHi4NT8cD5EH1uE9qCa
     </div>
-    <div style='width: 100px; display: table-cell; text-align: right;'> <?php echo `git describe --tags`; ?></div>
+    <div style='width: 150px; display: table-cell; text-align: right;'> <?php echo `git describe --tags`; ?></div>
   </div>
 </div>
 </body>
