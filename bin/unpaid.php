@@ -30,8 +30,10 @@
     $thead .= "<table class='table table-bordered table-striped' id='unpaid'>";
     $thead .= "<thead><tr><th>VTC</th><th class='numbers'>VTC value</th><th>MON</th><th class='numbers'>MON value</th></tr></thead>";
     $thead .= "<p>This table is updated every 5 minutes. Last update " . $now;
-    while ( $row_vtc = mysql_fetch_array($result_vtc) ): {
+    while ( True ): {
+      $row_vtc = mysql_fetch_array($result_vtc);
       $row_mon = mysql_fetch_array($result_mon);
+      if ( $row_vtc === False && $row_mon === False ) break;
       $sum_vtc += $row_vtc[1];
       $sum_mon += $row_mon[1];
       $tbody .= "<tr><td>" . $row_vtc[0] . "</td><td class='numbers'>" . sprintf("%.08f", $row_vtc[1]) . "</td><td>" . $row_mon[0] . "</td><td class='numbers'>" . sprintf("%.08f", $row_mon[1]) . "</td></tr>";
