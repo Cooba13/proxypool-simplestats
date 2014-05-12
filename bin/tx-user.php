@@ -97,9 +97,8 @@
       if ( !$result ) {
          $htmlbody .= "<p>No VertCoin transactions yet!";
       } else {
-        $thead .= "<table class='table table-bordered table-striped";
-        if ( $table_consolas ) $thead .= " table-consolas";
-        $thead .= "' id='vtc'><thead><tr><th>Date</th><th>Transaction</th><th class='numbers'>Amount</th></tr></thead>";
+        $thead .= "<table class='table table-bordered table-striped' id='vtc'>";
+        $thead .= "<thead><tr><th>Date</th><th>Transaction</th><th class='numbers'>Amount</th></tr></thead>";
         $sum_amount = 0;
         while ( $row = mysql_fetch_array($result) ): {
           $tbody .= "<tr><td>" . date("Y-m-d H:i:s", strtotime($row[0].' UTC')) . "</td><td><a href=\"http://cryptexplorer.com/tx/" . $row[1] . "\">" . $row[1] . "</a></td><td class='numbers'>" . sprintf("%.08f", $row[2]) . "</td></tr>";
@@ -149,9 +148,8 @@
       if ( !$result ) {
         $htmlbody .= "<p>No Monocle transactions yet!"; 
       } else {
-        $thead .= "<table class='table table-bordered table-striped";
-        if ( $table_consolas ) $thead .= " table-consolas";
-        $thead .= "' id='mon'><thead><tr><th>Date</th><th>Transaction</th><th class='numbers'>Amount</th></tr></thead>";
+        $thead .= "<table class='table table-bordered table-striped' id='mon'>";
+        $thead .= "<thead><tr><th>Date</th><th>Transaction</th><th class='numbers'>Amount</th></tr></thead>";
         $sum_amount = 0;
         while ( $row = mysql_fetch_array($result) ): {
           $tbody .= "<tr><td>" . date("Y-m-d H:i:s", strtotime($row[0].' UTC')) . "</td><td><a href=\"http://cryptexplorer.com/tx/" . $row[1] . "\">" . $row[1] . "</a></td><td class='numbers'>" . sprintf("%.08f" ,$row[2]) . "</td></tr>";

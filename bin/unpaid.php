@@ -27,9 +27,8 @@
      $output = "Nothing to display";
   } else {
     $output .= "<h3>All times, good times</h3><p>This is table of not yet paid submitted shares.";
-    $thead .= "<table class='table table-bordered table-striped";
-    if ( $table_consolas ) $output .= " table-consolas";
-    $thead .= "' id='unpaid'><thead><tr><th>VTC</th><th class='numbers'>VTC value</th><th>MON</th><th class='numbers'>MON value</th></tr></thead>";
+    $thead .= "<table class='table table-bordered table-striped' id='unpaid'>";
+    $thead .= "<thead><tr><th>VTC</th><th class='numbers'>VTC value</th><th>MON</th><th class='numbers'>MON value</th></tr></thead>";
     $thead .= "<p>This table is updated every 5 minutes. Last update " . $now;
     while ( $row_vtc = mysql_fetch_array($result_vtc) ): {
       $row_mon = mysql_fetch_array($result_mon);
