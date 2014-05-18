@@ -43,7 +43,7 @@
               break;
             }
             if ( $value['category'] == 'immature' ) {
-              $output['immature'] += $value['amount'];
+              $output['immature'] += sprintf("%.08f", $value['amount']);
             }
           }
           if ( prev($transactions) === False ) {
@@ -64,7 +64,7 @@
       $count += $count;
     } while ( !$found_block );
 
-    $output['balance'] = $wallet->getbalance("") - $output['immature'] - $minbalance;
+    $output['balance'] = sprintf("%.08f", $wallet->getbalance("") - $output['immature'] - $minbalance);
     if ( $output['balance'] < 0 ) $output['balance'] = 0;
 
     return $output;
