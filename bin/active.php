@@ -19,14 +19,18 @@
   $now = date("Y-m-d\TH:i:s");
 
   $output = '';
+  $tbody = '<tbody>';
+  $thead = '';
+  $tfoot = '';
 
   if ($rows == 0) {
-    $output .= "Nothing to display";
+    $tbody .= "<tr><td colspan=3>Nothing to display</td></td>";
   } else {
-    $output .= "<h3>Last 5 minutes stats</h3><table class='table table-bordered table-striped";
-    if ( $table_consolas ) $output .= " table-consolas";
-    $output .= "'><th>VTC</th><th>MON</th><th class='numbers'>Hashrate (khs)</th>";
-    $output .=  "<p>This table is updated every one minute. Last update " . $now;
+    $output .= "<h3>Last 5 minutes stats</h3>";
+    $output .= "<p>This table is updated every one minute. Last update " . $now;
+    $thead .= "<table class='table table-bordered table-striped";
+    if ( $table_consolas ) $thead .= " table-consolas";
+    $thead .= "'><th>VTC</th><th>MON</th><th class='numbers'>Hashrate (khs)</th>";
     while ( $row = mysql_fetch_array($result) ): {
       $query_hash = "select count(user), avg(sharediff) from stats_shares where user='" . $row[0] . "' and foundtime >= date_sub(now(), interval 5 minute);";
       $hashes = mysql_query($query_hash);
@@ -39,13 +43,16 @@
         $hashrate_total += $hashrate;
       };
       $hyperlink = "?vtc=" . $row[0] . "&mon=" . $row[1];
-      $output .= "<tr><td><a href=\"" . $hyperlink . "\">" . $row[0] . "</a></td><td><a href=\"" . $hyperlink . "\">" . $row[1] . "</a></td><td class='numbers'>" . sprintf("%.02f", $hashrate) .  "</td></tr>";
+      $tbody .= "<tr><td><a href=\"" . $hyperlink . "\">" . $row[0] . "</a></td><td><a href=\"" . $hyperlink . "\">" . $row[1] . "</a></td><td class='numbers'>" . sprintf("%.02f", $hashrate) .  "</td></tr>";
     } endwhile;
-    $output .= "<tr><td colspan=\"2\"><td class='numbers'>" . sprintf("%.02f", $hashrate_total) . "</td></table>";
+    $tfoot .= "</tbody><tfoot><tr><td colspan=\"2\"><td class='numbers'>" . sprintf("%.02f", $hashrate_total) . "</td></tfoot>";
+    $tbody .= "</table>";
   };
 
   mysql_close($db);
 
+  $output .= $thead . $tfoot . $tbody;
+  
   $file = dirname(__FILE__) . "/../include/gen-active.html";
   file_put_contents($file, $output);  
 

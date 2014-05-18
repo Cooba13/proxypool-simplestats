@@ -6,3 +6,4 @@ include/vtc-*.html
 include/announcement.html
 TODO
 .workspace
+proxypool-simplestats.*

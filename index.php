@@ -98,7 +98,7 @@ All times are in <?php echo $local_timezone; ?> time<br />
     } ?>
     <tr>
       <td><b>Auto Payout</b></td>
-      <td><?php echo $vtc_autopayout; ?> VTC / <?php echo $mon_autopayout; ?> MON</td>
+      <td><span class="label label-success"><?php echo $vtc_autopayout; ?> VTC</span> / <span class="label label-default"><?php echo $mon_autopayout; ?> MON</span></td>
     </tr>
     <tr>
       <td><b>Last VTC block</b></td>
