@@ -1,5 +1,8 @@
 <?php
 
+  // call for update.php
+  include dirname(__FILE__) . "/update.php";
+
   require_once dirname(__FILE__) . "/../include/config.php";
 
   date_default_timezone_set($local_timezone);
