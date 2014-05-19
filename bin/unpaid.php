@@ -20,7 +20,7 @@
   $tfoot = '';
   
   $result_vtc = mysql_query("select distinct(user), sum(vtcvalue) from stats_shares where vtcpaid = 0 group by user order by user;");
-  $result_mon = mysql_query("select distinct(auxuser), sum(monvalue) from stats_shares where monpaid = 0 group by auxuser order by user;");
+  $result_mon = mysql_query("select distinct(auxuser), sum(monvalue) from stats_shares where monpaid = 0 group by user order by auxuser;");
   $rows_vtc = mysql_num_rows($result_vtc);
   $rows_mon = mysql_num_rows($result_mon);
   if ( $rows_vtc == 0 && $rows_mon == 0 ) {
