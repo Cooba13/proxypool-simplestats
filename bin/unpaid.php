@@ -19,11 +19,9 @@
   $thead = '';
   $tfoot = '';
   
-  $result_vtc = mysql_query("select distinct(user), sum(vtcvalue) from stats_shares where vtcpaid = 0 group by user order by user;");
-  $result_mon = mysql_query("select distinct(auxuser), sum(monvalue) from stats_shares where monpaid = 0 group by auxuser order by auxuser;");
-  $rows_vtc = mysql_num_rows($result_vtc);
-  $rows_mon = mysql_num_rows($result_mon);
-  if ( $rows_vtc == 0 && $rows_mon == 0 ) {
+  $result = mysql_query("select user, sum(if(vtcpaid=0, vtcvalue, 0)), auxuser, sum(if(monpaid=0, monvalue, 0)) from stats_shares group by user order by user asc;");
+  $rows = mysql_num_rows($result);
+  if ( $rows == 0 ) {
      $output = "Nothing to display";
   } else {
     $output .= "<h3>All times, good times</h3><p>This is table of not yet paid submitted shares.";
@@ -31,12 +29,20 @@
     $thead .= "<thead><tr><th>VTC</th><th class='numbers'>VTC value</th><th>MON</th><th class='numbers'>MON value</th></tr></thead>";
     $thead .= "<p>This table is updated every 5 minutes. Last update " . $now;
     while ( True ): {
-      $row_vtc = mysql_fetch_array($result_vtc);
-      $row_mon = mysql_fetch_array($result_mon);
-      if ( $row_vtc === False && $row_mon === False ) break;
-      $sum_vtc += $row_vtc[1];
-      $sum_mon += $row_mon[1];
-      $tbody .= "<tr><td>" . $row_vtc[0] . "</td><td class='numbers'>" . sprintf("%.08f", $row_vtc[1]) . "</td><td>" . $row_mon[0] . "</td><td class='numbers'>" . sprintf("%.08f", $row_mon[1]) . "</td></tr>";
+      $row = mysql_fetch_array($result);
+      if ( $row === False ) break;
+      $sum_vtc += $row[1];
+      $sum_mon += $row[3];
+      if ( $row[1] == 0 && $row[3] == 0 ) continue;
+      $tbody .= "<tr><td";
+      if ( $row[1] == 0 ) $tbody .= " class='grayed'";
+      $tbody .= ">" . $row[0] . "</td><td class='numbers";
+      if ( $row[1] == 0 ) $tbody .= " grayed";
+      $tbody .= "'>" . sprintf("%.08f", $row[1]) . "</td><td";
+      if ( $row[3] == 0 ) $tbody .= " class='grayed'";
+      $tbody .= ">" . $row[2] . "</td><td class='numbers";
+      if ( $row[3] == 0 ) $tbody .= " grayed";
+      $tbody .= "'>" . sprintf("%.08f", $row[3]) . "</td></tr>";
     } endwhile;
     $tfoot .= "<tfoot><tr><td></td><td class='numbers'>" . sprintf("%.08f", $sum_vtc) . "</td><td></td><td class='numbers'>" . sprintf("%.08f", $sum_mon) . "</td></tfoot>";
   };
