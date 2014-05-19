@@ -17,20 +17,12 @@
       return True;
   }
 
-  $update = true;
-
   $file = dirname(__FILE__) . "/../include/gen-update.php";
-  if ( file_exists($file) && ((filemtime($file)) + 43200 > date("U"))) {
-    $update = false;
-  }
-  
-  if ( $update ) {
-    touch($file);
-    if ( check_updates() ) {
-      file_put_contents($file, '<?php $current = false; ?>');
-    } else {
-      file_put_contents($file, '<?php $current = true; ?>');
-    }
+
+  if ( check_updates() ) {
+    file_put_contents($file, '<?php $current = false; ?>');
+  } else {
+    file_put_contents($file, '<?php $current = true; ?>');
   }
   
 ?>
