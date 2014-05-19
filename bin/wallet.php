@@ -1,5 +1,7 @@
 <?php
 
+  // Called from bin/active.php
+
   require_once dirname(__FILE__) . "/../include/jsonRPCClient.php";
   require_once dirname(__FILE__) . "/../include/config.php";
   

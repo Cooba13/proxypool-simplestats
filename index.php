@@ -2,6 +2,9 @@
   require_once dirname(__FILE__) . "/include/config.php";
   if ( file_exists(dirname(__FILE__) . "/include/gen-lastblock.php") ) 
     require_once dirname(__FILE__) . "/include/gen-lastblock.php";
+  if ( !file_exists(dirname(__FILE__) . "/include/gen-update.php") )
+    include dirname(__FILE__) . "/bin/update.php";
+  require_once dirname(__FILE__) . "/include/gen-update.php";
 ?>
 
 <!DOCTYPE html>
@@ -161,8 +164,11 @@ All times are in <?php echo $local_timezone; ?> time<br />
       Made by <a href="https://github.com/Cooba13/proxypool-simplestats">Cooba13</a>
       If you feel the need VTC: Vt39dQgGN6oJpycARRHRtGVrz1nngjaV7b MON: MDbTCpvBsMuSBfGRHi4NT8cD5EH1uE9qCa
     </div>
-    <div style='width: 150px; display: table-cell; text-align: right;'> <?php echo `git describe --tags`; ?></div>
+    <div class='foot <?php if ( $current ) echo "current"; else echo "old"; ?>'> <?php echo `git describe --tags`; ?></div>
   </div>
 </div>
+<?php if ( !$current )  { ?>
+<div class='label label-default update-reminder'>New updates available</div>
+<?php }; ?>
 </body>
 </html>

@@ -4,3 +4,7 @@ table.table-consolas {  font-family: Consolas; font-weight: normal; }
 th { font-family: sans-serif; font-weight: bold; }
 tfoot > tr { font-weight: bold; }
 td.grayed { color: #c0c0c0; }
+div.foot { width: 150px; display: table-cell; text-align: right; }
+div.current  { color: green; }
+div.old { color: red; }
+div.update-reminder { position: fixed; top: 1em; right: 1em; }
